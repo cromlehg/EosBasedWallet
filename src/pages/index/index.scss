@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/bootstrap";
+
+html, body {
+  position: relative;
+  height: 100%;
+  overflow-x: hidden;
+}
+.app {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  &__header {
+    height: 4.5rem;
+  }
+  &__body {
+    flex-grow: 1;
+  }
+  &__footer {
+    padding-top: 3rem;
+  }
+}
