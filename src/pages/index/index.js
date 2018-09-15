@@ -81,8 +81,8 @@ $(window).on(events.TRANSFER_SUCCESS, (event, data) => {
         `Success! You can see your transaction on the <a href="${txLink}" target="_blank">blockchain</a>`,
         'success'
       );
+      $sendButton.prop('disabled', false);
     });
-  $sendButton.prop('disabled', false);
 });
 
 $(window).on(events.TRANSFER_ERROR, (event, error) => {
