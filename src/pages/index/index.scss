@@ -15,6 +15,15 @@ html, body {
   &__body {
     flex-grow: 1;
   }
+  &__sidebar {
+    td {
+      vertical-align: top;
+    }
+    td:last-child {
+      padding-left: 1rem;
+      font-weight: bold;
+    }
+  }
   &__footer {
     padding-top: 3rem;
   }

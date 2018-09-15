@@ -45,6 +45,7 @@ const commonConfig = {
         test: /\.pug$/,
         loader: 'pug-loader',
         options: {
+          doctype: 'xml',
           pretty: true
         }
       },
@@ -97,6 +98,13 @@ const commonConfig = {
       chunks: ['index'],
       template: PATHS.src + '/pages/index/index.pug',
       inject: 'body'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_HTTP_ENDPOINT: JSON.stringify(CONFIG.API_HTTP_ENDPOINT),
+        API_CHAIN_ID: JSON.stringify(CONFIG.API_CHAIN_ID),
+        TRACKER_HTTP_ENDPOINT: JSON.stringify(CONFIG.TRACKER_HTTP_ENDPOINT)
+      }
     })
   ]
 };
