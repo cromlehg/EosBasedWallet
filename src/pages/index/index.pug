@@ -19,7 +19,7 @@ html(lang='en')
                   label(for='to') to
                   input#to.form-control(type='text' required)
                 .form-group
-                  label(for='quantity') quantity
+                  label(for='quantity') amount
                   input#quantity.form-control(type='number' required)
                 .form-group
                   label(for='memo') memo
@@ -28,7 +28,7 @@ html(lang='en')
                   label(for='private-key') private key
                   input#private-key.form-control(type='text' required)
                 .form-group
-                  input#send.btn.btn-outline-secondary(type='submit')
+                  button#send.btn.btn-outline-secondary(type='submit') Send
                 #result
           .col-12.col-md-4
             .card
