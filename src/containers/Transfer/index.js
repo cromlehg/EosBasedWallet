@@ -146,7 +146,7 @@ class Transfer extends Component {
                     <div className="form-group">
                       <label htmlFor="quantity" className="form-label">Amount</label>
                       <Field component={InputGroup} type="text" name="quantity" id="quantity">
-                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                        <div className="input-group-append"><span className="input-group-text">VEST</span></div>
                       </Field>
                     </div>
                     <div className="form-group">

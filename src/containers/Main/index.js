@@ -14,7 +14,7 @@ class Main extends Component {
     return (
       <div className="Main">
         <h4 className="text-center mb-4">
-          Welcome to EOS based wallet!
+          Welcome to VEST wallet!
         </h4>
         <p className="text-center text-secondary">How can we help you?</p>
         <ul className="Main__menu">

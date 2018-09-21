@@ -176,19 +176,19 @@ class CreateAccount extends Component {
                     <div className="form-group">
                       <label htmlFor="stake_net_quantity" className="form-label">Stake net quantity</label>
                       <Field component={InputGroup} type="text" name="stake_net_quantity" id="stake_net_quantity">
-                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                        <div className="input-group-append"><span className="input-group-text">VEST</span></div>
                       </Field>
                     </div>
                     <div className="form-group">
                       <label htmlFor="stake_cpu_quantity" className="form-label">Stake CPU quantity</label>
                       <Field component={InputGroup} type="text" name="stake_cpu_quantity" id="stake_cpu_quantity">
-                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                        <div className="input-group-append"><span className="input-group-text">VEST</span></div>
                       </Field>
                     </div>
                     <div className="form-group">
                       <label htmlFor="transfer" className="form-label">Transfer</label>
                       <Field component={InputGroup} type="text" name="transfer" id="transfer">
-                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                        <div className="input-group-append"><span className="input-group-text">VEST</span></div>
                       </Field>
                     </div>
                     <div className="form-group mb-5">
