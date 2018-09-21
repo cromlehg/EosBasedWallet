@@ -1,0 +1,18 @@
+.NotFound {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 6rem;
+  max-width: 640px;
+  &__menu {
+    margin: 0 -5px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+  }
+  &__menu-item {
+    padding: 0 5px;
+    font-size: .8rem;
+  }
+}

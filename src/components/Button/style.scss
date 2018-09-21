@@ -1,0 +1,39 @@
+.btn {
+  &-reset {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    &:hover, &:focus, &:active {
+      border-color: transparent;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  &-link {
+    color:#34495e;
+    text-decoration:none;
+    transition: 0.5s;
+    outline: none;
+    &:hover {
+      color: #6dbaf2;
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+    &.active {
+      color: #6dbaf2;
+    }
+    &:disabled {
+      color: #6c757d;
+    }
+  }
+  &-plain {
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-size: inherit;
+    background-color: transparent;
+  }
+
+}

@@ -1,20 +1,21 @@
 {
   "presets": [
-    "env"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
   "env": {
     "development": {
       "plugins": [
-        "transform-class-properties",
-        "syntax-class-properties",
-        "transform-object-rest-spread"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-syntax-class-properties",
+        "@babel/plugin-proposal-object-rest-spread"
       ]
     },
     "production": {
       "plugins": [
-        "transform-class-properties",
-        "syntax-class-properties",
-        "transform-object-rest-spread"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-syntax-class-properties",
+        "@babel/plugin-proposal-object-rest-spread"
       ]
     }
   }

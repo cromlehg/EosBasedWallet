@@ -1,0 +1,45 @@
+.Footer {
+  background-color: #e2edf3;
+  font-size: .75rem;
+  &__container {
+    margin-right: auto;
+    margin-left: auto;
+    padding: .3125rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 682px;
+    min-height: 2.25rem;
+    align-items: center;
+    @media screen and (min-width: 1025px) {
+      max-width: 1022px;
+    }
+  }
+  &__links {
+    margin: 0 .75rem;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+  &__link-item {
+    padding: 0 .25rem;
+    &:not(:first-child):before {
+      padding-right: .25rem;
+      display: inline-block;
+      content: '\00B7';
+    }
+  }
+  &__media {
+    margin: 0 .75rem;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+  &__media-item {
+    margin: 0 .25rem;
+    font-size: 1rem;
+  }
+  &__copy {
+    margin: 0 1rem;
+  }
+}

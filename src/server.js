@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -9,3 +11,5 @@ app.use('/', express.static(path.resolve(__dirname, '../build')));
 http
   .createServer(app)
   .listen(CONFIG.APP_HTTP_PORT, () => console.log(`http app listening on port ${CONFIG.APP_HTTP_PORT}`));
+
+/* eslint-enable no-console */

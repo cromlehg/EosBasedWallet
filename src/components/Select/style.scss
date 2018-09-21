@@ -1,0 +1,24 @@
+@import 'styles/default';
+
+.Select {
+  &.is-invalid {
+    .Select-control {
+      border-color: #dc3545;
+    }
+    .Select-menu-outer {
+      border-right-color: #dc3545;
+      border-bottom-color: #dc3545;
+      border-left-color: #dc3545;
+    }
+  }
+  &.is-valid {
+    .Select-control {
+      border-color: #28a745;
+    }
+    .Select-menu-outer {
+      border-right-color: #28a745;
+      border-bottom-color: #28a745;
+      border-left-color: #28a745;
+    }
+  }
+}

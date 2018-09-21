@@ -1,0 +1,33 @@
+@import "../../styles/bootstrap/bootstrap";
+
+html, body, #root {
+  position: relative;
+  height: 100%;
+}
+
+a {
+  color:#34495e;
+  text-decoration:none;
+  transition: 0.5s;
+  outline: none;
+  &:hover {
+    color: #6dbaf2;
+    text-decoration: none;
+  }
+}
+
+.App {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  &__header {
+    height: 4.5rem;
+  }
+  &__body {
+    flex-grow: 1;
+    overflow-x: hidden;
+  }
+  &__footer {
+    padding-top: 3rem;
+  }
+}
