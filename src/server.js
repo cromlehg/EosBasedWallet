@@ -6,7 +6,7 @@ const path = require('path');
 const CONFIG = require('dotenv').config().parsed;
 
 const app = express();
-app.use('/', express.static(path.resolve(__dirname, '../build')));
+app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 http
   .createServer(app)
