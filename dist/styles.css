@@ -6351,6 +6351,9 @@ a {
   .Footer__copy {
     margin: 0 1rem; }
 
+.Header {
+  background-color: #e2edf3; }
+
 .Image {
   position: relative;
   padding-top: 100%;
@@ -6793,12 +6796,19 @@ a {
   padding-top: 50px; }
 
 .Main {
-  padding-top: 50px; }
-  .Main__container {
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-    max-width: 42.625rem; }
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 6rem;
+  max-width: 640px; }
+  .Main__menu {
+    margin: 0 -5px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none; }
+  .Main__menu-item {
+    padding: 0 5px; }
 
 
 

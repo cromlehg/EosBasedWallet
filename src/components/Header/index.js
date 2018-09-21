@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './style.scss';
 
 export default class Header extends Component {
@@ -8,14 +8,14 @@ export default class Header extends Component {
       <div className="Header navbar navbar-expand">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/transfer">Send tokens</Link>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/transfer">Send tokens</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/keypairs">Generate keypairs</Link>
+              <NavLink className="nav-link" to="/keypairs">Generate keypairs</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/create-account">Create account</Link>
+              <NavLink className="nav-link" to="/create-account">Create account</NavLink>
             </li>
           </ul>
         </div>

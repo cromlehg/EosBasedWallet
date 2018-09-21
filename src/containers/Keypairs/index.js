@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Button} from '../../components';
+import {Button, Icon} from '../../components';
 import {keypairsActions} from '../../store/actions';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './style.scss';
 
 
@@ -37,23 +38,36 @@ class Transfer extends Component {
         <div className="Keypairs__container container">
           <h5>Generate keypairs</h5>
           <p className="mb-5">Click &laquo;Generate&raquo; to create random keypair</p>
-          <Button type="button" theme="outline-primary" onClick={this.onClickGenerate}>Generate</Button>
-          {this.state.error &&
-            <div className="alert alert-danger mt-5">{this.props.keypairs.errors.generate}</div>
+          <Button
+            className="mr-3"
+            type="button"
+            theme="outline-secondary"
+            onClick={this.onClickGenerate}
+            disabled={this.props.keypairs.loading.generate ? true : false}
+          >Generate</Button>
+          {this.props.keypairs.loading.generate &&
+            <Icon icon={['fas', 'spinner']} spin color="#6c757d"/>
           }
-          {this.state.success &&
-            <div className="alert alert-success mt-5">
-              Success! Here is your keypair:
-              <div className="row">
-                <div className="col-12 col-lg-2">Private key:</div>
-                <div className="col-12 col-lg-10" style={{wordWrap: 'break-word'}}>{this.props.keypairs.keypair.privateKey}</div>
-              </div>
-              <div className="row">
-                <div className="col-12 col-lg-2">Public key:</div>
-                <div className="col-12 col-lg-10" style={{wordWrap: 'break-word'}}>{this.props.keypairs.keypair.publicKey}</div>
-              </div>
+          <div className="input-group my-3">
+            <input type="text" className="form-control" placeholder="Private key" value={this.props.keypairs.keypair.privateKey} disabled/>
+            <div className="input-group-append">
+              <CopyToClipboard text={this.props.keypairs.keypair.privateKey}>
+                <button className="btn btn-outline-secondary" type="button" title="Copy to clipboard">
+                  <Icon icon={['far', 'copy']}/>
+                </button>
+              </CopyToClipboard>
             </div>
-          }
+          </div>
+          <div className="input-group mb-3">
+            <input type="text" className="form-control" placeholder="Public key" value={this.props.keypairs.keypair.publicKey} disabled/>
+            <div className="input-group-append">
+              <CopyToClipboard text={this.props.keypairs.keypair.publicKey}>
+                <button className="btn btn-outline-secondary" type="button" title="Copy to clipboard">
+                  <Icon icon={['far', 'copy']}/>
+                </button>
+              </CopyToClipboard>
+            </div>
+          </div>
         </div>
       </div>
     );

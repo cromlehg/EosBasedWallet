@@ -4,9 +4,12 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const CONFIG = require('dotenv').config().parsed;
+const history = require('connect-history-api-fallback');
 
 const app = express();
-app.use('/', express.static(path.resolve(__dirname, '../dist')));
+app
+  .use(history())
+  .use('/', express.static(path.resolve(__dirname, '../dist')));
 
 http
   .createServer(app)
