@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
 import {Button, Form, Input, InputGroup} from '../../components';
-import {accountActions, createAccountActions} from '../../store/actions';
+import {accountActions, createAccountActions, modalActions} from '../../store/actions';
 import {formatQuantity} from '../../utils';
 import './style.scss';
 
@@ -21,6 +21,10 @@ class CreateAccount extends Component {
       step: this.props.account.user.name ? 2 : 1,
       success: false
     };
+  }
+
+  onClickSwitchAccount = () => {
+    this.props.dispatch(modalActions.show('Login'));
   }
 
   validateStep1 = values => {
@@ -220,7 +224,7 @@ class CreateAccount extends Component {
                       </tr>
                     </tbody>
                   </table>
-                  <Button type="button" theme='outline-secondary'>Change</Button>
+                  <Button type="button" theme='outline-secondary' onClick={this.onClickSwitchAccount}>Change</Button>
                 </div>
               </div>
             </div>
