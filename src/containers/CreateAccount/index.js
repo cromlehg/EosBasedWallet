@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
-import {Button, Form, Input} from '../../components';
+import {Button, Form, Input, InputGroup} from '../../components';
 import {accountActions, createAccountActions} from '../../store/actions';
 import {formatQuantity} from '../../utils';
 import './style.scss';
-import {eos} from '../../utils';
 
 class CreateAccount extends Component {
   static propTypes = {
@@ -177,25 +176,27 @@ class CreateAccount extends Component {
                     </div>
                     <div className="form-group">
                       <label htmlFor="stake_net_quantity" className="form-label">Stake net quantity</label>
-                      <Field component={Input} type="text" name="stake_net_quantity" id="stake_net_quantity"/>
+                      <Field component={InputGroup} type="text" name="stake_net_quantity" id="stake_net_quantity">
+                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                      </Field>
                     </div>
                     <div className="form-group">
                       <label htmlFor="stake_cpu_quantity" className="form-label">Stake CPU quantity</label>
-                      <Field component={Input} type="text" name="stake_cpu_quantity" id="stake_cpu_quantity"/>
+                      <Field component={InputGroup} type="text" name="stake_cpu_quantity" id="stake_cpu_quantity">
+                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                      </Field>
                     </div>
                     <div className="form-group">
                       <label htmlFor="transfer" className="form-label">Transfer</label>
-                      <Field component={Input} type="text" name="transfer" id="transfer"/>
+                      <Field component={InputGroup} type="text" name="transfer" id="transfer">
+                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                      </Field>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mb-5">
                       <label htmlFor="privatekey" className="form-label">Your private key</label>
                       <Field component={Input} type="text" name="privatekey" id="privatekey"/>
                     </div>
-                    <div className="row mt-5 mb-2">
-                      <div className="col col-auto">
-                        <Button type="submit" theme={['outline-primary', 'block']}>Send</Button>
-                      </div>
-                    </div>
+                    <Button type="submit" theme={['outline-secondary', 'block']}>Send</Button>
                   </Form>
                 </div>
               </div>
@@ -203,7 +204,7 @@ class CreateAccount extends Component {
             <div className="Transfer__sidebar col-12 col-md-4">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">Account</h5>
+                  <h5 className="card-title">Your account</h5>
                   <table>
                     <tbody>
                       <tr>

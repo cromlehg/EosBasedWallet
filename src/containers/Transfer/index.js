@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
-import {Button, Form, Input} from '../../components';
+import {Button, Form, Input, InputGroup} from '../../components';
 import {accountActions, transferActions} from '../../store/actions';
 import {formatTxLink, formatQuantity} from '../../utils';
 import './style.scss';
@@ -41,9 +41,6 @@ class Transfer extends Component {
     }
     if (!values.quantity) {
       errors.quantity = 'required';
-    }
-    if (!values.memo) {
-      errors.memo = 'required';
     }
     if (!values.privatekey) {
       errors.privatekey = 'required';
@@ -137,7 +134,7 @@ class Transfer extends Component {
                     }
                     <div className="form-group">
                       <label htmlFor="from" className="form-label">From</label>
-                      <Field component={Input} type="text" name="from" id="from"/>
+                      <Field component={Input} type="text" name="from" id="from" disabled/>
                     </div>
                     <div className="form-group">
                       <label htmlFor="to" className="form-label">To</label>
@@ -145,21 +142,19 @@ class Transfer extends Component {
                     </div>
                     <div className="form-group">
                       <label htmlFor="quantity" className="form-label">Amount</label>
-                      <Field component={Input} type="text" name="quantity" id="quantity"/>
+                      <Field component={InputGroup} type="text" name="quantity" id="quantity">
+                        <div className="input-group-append"><span className="input-group-text">EOS</span></div>
+                      </Field>
                     </div>
                     <div className="form-group">
                       <label htmlFor="memo" className="form-label">Memo</label>
                       <Field component={Input} type="text" name="memo" id="memo"/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mb-5">
                       <label htmlFor="privatekey" className="form-label">Private key</label>
                       <Field component={Input} type="text" name="privatekey" id="privatekey"/>
                     </div>
-                    <div className="row mt-5 mb-2">
-                      <div className="col col-auto">
-                        <Button type="submit" theme={['outline-primary', 'block']}>Send</Button>
-                      </div>
-                    </div>
+                    <Button type="submit" theme={['outline-secondary', 'block']}>Send</Button>
                   </Form>
                 </div>
               </div>
@@ -167,7 +162,7 @@ class Transfer extends Component {
             <div className="Transfer__sidebar col-12 col-md-4">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">Account</h5>
+                  <h5 className="card-title">Your account</h5>
                   <table>
                     <tbody>
                       <tr>
