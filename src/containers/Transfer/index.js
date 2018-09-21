@@ -84,6 +84,7 @@ class Transfer extends Component {
     return (
       <div className="Transfer">
         <div className="Transfer__container container">
+          <h5>Send tokens</h5>
           <Form form="login" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
             {this.state.error &&
               <div className="alert alert-danger">{this.props.transfer.errors.transfer}</div>

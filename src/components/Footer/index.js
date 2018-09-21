@@ -8,7 +8,6 @@ export default class Footer extends Component {
     return (
       <div className="Footer">
         <div className="Footer__container">
-          footer
         </div>
       </div>
     );

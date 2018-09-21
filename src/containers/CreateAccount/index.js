@@ -110,9 +110,10 @@ class CreateAccount extends Component {
     return (
       <div className="Transfer">
         <div className="Transfer__container container">
-          <Form form="login" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
+          <h5>Create new account</h5>
+          <Form form="createaccountlogin" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
             {this.state.error &&
-              <div className="alert alert-danger">{this.props.createAccount.errors.create}</div>
+              <div className="alert alert-danger">{this.props.account.errors.fetch}</div>
             }
             {this.state.success &&
               <div className="alert alert-success">Thank you!</div>
@@ -140,7 +141,7 @@ class CreateAccount extends Component {
             <div className="Transfer__form col-12 col-md-8 mb-4">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title mb-4">Send tokens</h5>
+                  <h5 className="card-title mb-4">Create new account</h5>
                   <Form
                     form="createaccount"
                     initialValues={{
