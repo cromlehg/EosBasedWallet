@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
-    "build": "rm -rf ./build & cross-env NODE_ENV=production webpack --mode production",
+    "build": "rm -rf ./dist & cross-env NODE_ENV=production webpack --mode production",
     "server": "cross-env NODE_ENV=production node ./src/server.js"
   },
   "private": true,
