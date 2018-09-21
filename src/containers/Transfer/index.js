@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
 import {Button, Form, Input, InputGroup} from '../../components';
-import {accountActions, transferActions} from '../../store/actions';
+import {accountActions, modalActions, transferActions} from '../../store/actions';
 import {formatTxLink, formatQuantity} from '../../utils';
 import './style.scss';
 
@@ -23,6 +23,10 @@ class Transfer extends Component {
     };
   }
 
+  onClickSwitchAccount = () => {
+    this.props.dispatch(modalActions.show('Login'));
+  }
+
   validateStep1 = values => {
     const errors = {};
     if (!values.name) {
@@ -33,9 +37,6 @@ class Transfer extends Component {
 
   validateStep2 = values => {
     const errors = {};
-    if (!values.from) {
-      errors.from = 'required';
-    }
     if (!values.to) {
       errors.to = 'required';
     }
@@ -55,14 +56,17 @@ class Transfer extends Component {
         this.setState({error: true});
         throw new SubmissionError({_error: this.props.account.errors.fetch});
       } else {
-        this.setState({success: true});
-        setTimeout(() => this.setState({step: 2, success: false}), 500);
+        this.setState({step: 2});
       }
     });
   };
 
   onSubmitStep2 = values => {
-    const params = {...values, quantity: formatQuantity(values.quantity) + ' VEST'};
+    const params = {
+      ...values,
+      from: this.props.account.user.name,
+      quantity: formatQuantity(values.quantity) + ' VEST'
+    };
     this.setState({success: false, error: false});
     return this.props.dispatch(transferActions.transfer(params)).then(() => {
       if (this.props.transfer.errors.transfer) {
@@ -84,7 +88,7 @@ class Transfer extends Component {
           <h5>Send tokens</h5>
           <Form form="login" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
             {this.state.error &&
-              <div className="alert alert-danger">{this.props.transfer.errors.transfer}</div>
+              <div className="alert alert-danger">{this.props.account.errors.fetch}</div>
             }
             {this.state.success &&
               <div className="alert alert-success">Thank you!</div>
@@ -93,11 +97,11 @@ class Transfer extends Component {
               <label htmlFor="name" className="form-label">Enter your account name</label>
               <Field component={Input} type="text" name="name" id="name"/>
             </div>
-            <div className="row">
-              <div className="col col-auto">
-                <Button type="submit" theme={['outline-primary', 'block']}>Submit</Button>
-              </div>
-            </div>
+            <Button
+              type="submit"
+              theme='outline-secondary'
+              disabled={this.props.account.loading.fetch}
+            >Submit</Button>
           </Form>
         </div>
       </div>
@@ -120,7 +124,6 @@ class Transfer extends Component {
                   <h5 className="card-title mb-4">Send tokens</h5>
                   <Form
                     form="transfer"
-                    initialValues={{from: this.props.account.user.name}}
                     onSubmit={this.onSubmitStep2}
                     validate={this.validateStep2}
                   >
@@ -134,7 +137,7 @@ class Transfer extends Component {
                     }
                     <div className="form-group">
                       <label htmlFor="from" className="form-label">From</label>
-                      <Field component={Input} type="text" name="from" id="from" disabled/>
+                      <input className="form-control" type="text" name="from" id="from" value={this.props.account.user.name} disabled/>
                     </div>
                     <div className="form-group">
                       <label htmlFor="to" className="form-label">To</label>
@@ -154,7 +157,11 @@ class Transfer extends Component {
                       <label htmlFor="privatekey" className="form-label">Private key</label>
                       <Field component={Input} type="text" name="privatekey" id="privatekey"/>
                     </div>
-                    <Button type="submit" theme={['outline-secondary', 'block']}>Send</Button>
+                    <Button
+                      type="submit"
+                      theme={['outline-secondary', 'block']}
+                      disabled={this.props.transfer.loading.transfer}
+                    >Send</Button>
                   </Form>
                 </div>
               </div>
@@ -163,7 +170,7 @@ class Transfer extends Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">Your account</h5>
-                  <table>
+                  <table className="mb-4">
                     <tbody>
                       <tr>
                         <td className="pr-2">name</td>
@@ -175,6 +182,7 @@ class Transfer extends Component {
                       </tr>
                     </tbody>
                   </table>
+                  <Button type="button" theme="outline-secondary" onClick={this.onClickSwitchAccount}>Change</Button>
                 </div>
               </div>
             </div>

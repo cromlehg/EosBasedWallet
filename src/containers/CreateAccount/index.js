@@ -67,8 +67,7 @@ class CreateAccount extends Component {
         this.setState({error: true});
         throw new SubmissionError({_error: this.props.account.errors.fetch});
       } else {
-        this.setState({success: true});
-        setTimeout(() => this.setState({step: 2, success: false}), 500);
+        this.setState({step: 2});
       }
     });
   };
@@ -121,11 +120,11 @@ class CreateAccount extends Component {
               <label htmlFor="name" className="form-label">Enter your account name</label>
               <Field component={Input} type="text" name="name" id="name"/>
             </div>
-            <div className="row">
-              <div className="col col-auto">
-                <Button type="submit" theme={['outline-primary', 'block']}>Submit</Button>
-              </div>
-            </div>
+            <Button
+              type="submit"
+              theme='outline-secondary'
+              disabled={this.props.account.loading.fetch}
+            >Submit</Button>
           </Form>
         </div>
       </div>
@@ -196,7 +195,11 @@ class CreateAccount extends Component {
                       <label htmlFor="privatekey" className="form-label">Your private key</label>
                       <Field component={Input} type="text" name="privatekey" id="privatekey"/>
                     </div>
-                    <Button type="submit" theme={['outline-secondary', 'block']}>Send</Button>
+                    <Button
+                      type="submit"
+                      theme={['outline-secondary', 'block']}
+                      disabled={this.props.createAccount.loading.create}
+                    >Send</Button>
                   </Form>
                 </div>
               </div>
@@ -205,7 +208,7 @@ class CreateAccount extends Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">Your account</h5>
-                  <table>
+                  <table className="mb-4">
                     <tbody>
                       <tr>
                         <td className="pr-2">name</td>
@@ -217,6 +220,7 @@ class CreateAccount extends Component {
                       </tr>
                     </tbody>
                   </table>
+                  <Button type="button" theme='outline-secondary'>Change</Button>
                 </div>
               </div>
             </div>
