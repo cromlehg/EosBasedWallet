@@ -37,7 +37,7 @@ class Transfer extends Component {
       <div className="Keypairs">
         <div className="Keypairs__container container">
           <h5>Generate keypairs</h5>
-          <p className="mb-5">Click &laquo;Generate&raquo; to create random keypair</p>
+          <p className="mb-5">Click &laquo;Generate&raquo; to create a random keypair</p>
           <Button
             className="mr-3"
             type="button"

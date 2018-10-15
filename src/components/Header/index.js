@@ -15,7 +15,7 @@ export default class Header extends Component {
               <NavLink className="nav-link" to="/keypairs">Generate keypairs</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/create-account">Create account</NavLink>
+              <NavLink className="nav-link" to="/create-account">Create an Account</NavLink>
             </li>
           </ul>
         </div>
