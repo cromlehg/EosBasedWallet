@@ -21,13 +21,14 @@ a {
   min-height: 100%;
   flex-direction: column;
   &__header {
-    height: 4.5rem;
+    //height: 4.5rem;
   }
   &__body {
     flex-grow: 1;
     overflow-x: hidden;
+    background: #f5fafa;
+    padding-bottom: 3rem;
   }
   &__footer {
-    padding-top: 3rem;
   }
 }

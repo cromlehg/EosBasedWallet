@@ -12,6 +12,10 @@ import NotFound from '../NotFound';
 import Transfer from '../Transfer';
 import CreateAccount from '../CreateAccount';
 
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+library.add(fab);
+
 class App extends Component {
   static propTypes = {
     account: PropTypes.object.isRequired,

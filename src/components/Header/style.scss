@@ -1,6 +1,62 @@
 .Header {
-  background-color: #e2edf3;
+
+  .topBar {
+    background: #000;
+    padding: 6px;
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
+
+    .socialItem {
+      padding: 4px 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      font-size: 13px;
+
+      &:hover {
+        background: #27aa6b;
+      }
+    }
+    & > ul {
+      line-height: 1;
+    }
+    .topNav {
+      font-size: 13px;
+
+      a:not(.dropdown-item):hover, a.active {
+        color: #27aa6b;
+      }
+
+      .dropdown-menu {
+        background: #000;
+        font-size: 13px;
+        a:hover {
+          background: #27aa6b;
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    padding: 0;
+
+    img {
+      height: 50px;
+    }
+  }
+  .navbar-collapse {
+    text-align: center;
+    background: #fff;
+    justify-content: flex-end;
+  }
+
   .nav-link.active {
-    color: #6dbaf2;
+    color: #27aa6b;
+  }
+
+  .navbar-light .navbar-toggler {
+    border: 0;
   }
 }
