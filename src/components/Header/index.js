@@ -97,13 +97,12 @@ export default class Header extends Component {
 
             <div className={navbarCollapse} id="navbarCollapse">
               <ul className="navbar-nav">
-                <NavItem path="/transfer" name="Send tokens" />
-                <NavItem path="/keypairs" name="Generate keypairs" />
-                <NavItem path="/create-account" name="Create an Account" />
+                <NavItem path="/send-tokens" name="Send Tokens" />
+                <NavItem path="/generate-key-pairs" name="Generate Key Pairs" />
+                <NavItem path="/create-an-account" name="Create an Account" />
               </ul>
             </div>
           </nav>
-
         </div>
       </div>
     );

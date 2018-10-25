@@ -8,6 +8,7 @@ export default class Footer extends Component {
     return (
       <div className="Footer">
         <div className="Footer__container">
+          &copy; VestChain 2018
         </div>
       </div>
     );

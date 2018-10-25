@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
 import {Button, Form, Input, InputGroup} from '../../components';
 import {accountActions, modalActions, transferActions} from '../../store/actions';
-import {formatTxLink, formatQuantity} from '../../utils';
+import {formatTxLink, formatQuantity, validation} from '../../utils';
 import './style.scss';
 
 class Transfer extends Component {
@@ -29,23 +29,16 @@ class Transfer extends Component {
 
   validateStep1 = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'required';
-    }
+    validation.accountName('name', values, errors, ['lessThan12']);
     return errors;
   };
 
+
   validateStep2 = values => {
     const errors = {};
-    if (!values.to) {
-      errors.to = 'required';
-    }
-    if (!values.quantity) {
-      errors.quantity = 'required';
-    }
-    if (!values.privatekey) {
-      errors.privatekey = 'required';
-    }
+    validation.accountName('to', values, errors, ['lessThan12']);
+    validation.quantity('quantity', values, errors);
+    validation.privateKey('privatekey', values, errors);
     return errors;
   };
 
@@ -65,6 +58,7 @@ class Transfer extends Component {
     const params = {
       ...values,
       from: this.props.account.user.name,
+      memo: values.memo ? values.memo : '',
       quantity: formatQuantity(values.quantity) + ' VEST'
     };
     this.setState({success: false, error: false});
@@ -85,7 +79,7 @@ class Transfer extends Component {
     return (
       <div className="Transfer">
         <div className="Transfer__container container">
-          <h5>Send tokens</h5>
+          <h5>Send Tokens</h5>
           <Form form="login" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
             {this.state.error &&
               <div className="alert alert-danger">{this.props.account.errors.fetch}</div>
@@ -173,11 +167,11 @@ class Transfer extends Component {
                   <table className="mb-4">
                     <tbody>
                       <tr>
-                        <td className="pr-2">name</td>
+                        <td className="pr-2 font-weight-bold">Name:</td>
                         <td>{this.props.account.user.name}</td>
                       </tr>
                       <tr>
-                        <td className="pr-2">balance</td>
+                        <td className="pr-2 font-weight-bold">Balance:</td>
                         <td>{this.props.account.user.balance}</td>
                       </tr>
                     </tbody>

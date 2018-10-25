@@ -37,9 +37,9 @@ class App extends Component {
           <div className="App__body">
             <Switch>
               <Route path="/" exact component={Main}/>
-              <Route path="/create-account" exact component={CreateAccount}/>
-              <Route path="/keypairs" exact component={Keypairs}/>
-              <Route path="/transfer" component={Transfer}/>
+              <Route path="/create-an-account" exact component={CreateAccount}/>
+              <Route path="/generate-key-pairs" exact component={Keypairs}/>
+              <Route path="/send-tokens" component={Transfer}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

@@ -10,7 +10,7 @@ export default function (types) {
       });
       return response;
     } catch (e) {
-      // console.log(e)
+      console.log(e)
       if (e.response && e.response.status < 500) {
         const error = e.response.data.msg || e.response.data || 'Something went wrong';
         dispatch({

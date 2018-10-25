@@ -14,13 +14,13 @@ class Main extends Component {
     return (
       <div className="Main">
         <h4 className="text-center mb-4">
-          Welcome to VEST wallet!
+          Welcome to VEST Wallet!
         </h4>
         <p className="text-center text-secondary">How can we help you?</p>
         <ul className="Main__menu">
-          <li className="Main__menu-item"><Link to="/transfer">Send tokens</Link></li>
-          <li className="Main__menu-item"><Link to="/keypairs">Create new keypairs</Link></li>
-          <li className="Main__menu-item"><Link to="/create-account">Create new account</Link></li>
+          <li className="Main__menu-item"><Link to="/send-tokens">Send tokens</Link></li>
+          <li className="Main__menu-item"><Link to="/generate-key-pairs">Create new keypairs</Link></li>
+          <li className="Main__menu-item"><Link to="/create-an-account">Create new account</Link></li>
         </ul>
       </div>
     );

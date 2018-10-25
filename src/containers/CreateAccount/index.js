@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Field, SubmissionError} from 'redux-form';
 import {Button, Form, Input, InputGroup} from '../../components';
 import {accountActions, createAccountActions, modalActions} from '../../store/actions';
-import {formatQuantity} from '../../utils';
+import {formatQuantity, validation} from '../../utils';
 import './style.scss';
 
 class CreateAccount extends Component {
@@ -29,38 +30,20 @@ class CreateAccount extends Component {
 
   validateStep1 = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'required';
-    }
+    validation.accountName('name', values, errors, ['lessThan12']);
     return errors;
   };
 
   validateStep2 = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'required';
-    }
-    if (!values.owner) {
-      errors.owner = 'required';
-    }
-    if (!values.active) {
-      errors.active = 'required';
-    }
-    if (!values.bytes) {
-      errors.bytes = 'required';
-    }
-    if (!values.stake_net_quantity) {
-      errors.stake_net_quantity = 'required';
-    }
-    if (!values.stake_cpu_quantity) {
-      errors.stake_cpu_quantity = 'required';
-    }
-    if (isNaN(values.transfer)) {
-      errors.transfer = 'required';
-    }
-    if (!values.privatekey) {
-      errors.privatekey = 'required';
-    }
+    validation.accountName('name', values, errors, ['exactly12']);
+    validation.publicKey('owner', values, errors);
+    validation.publicKey('active', values, errors);
+    validation.quantity('bytes', values, errors);
+    validation.quantity('stake_net_quantity', values, errors);
+    validation.quantity('stake_cpu_quantity', values, errors);
+    validation.quantity('transfer', values, errors, parseFloat(this.props.account.user.balance));
+    validation.privateKey('privatekey', values, errors);
     return errors;
   };
 
@@ -81,8 +64,8 @@ class CreateAccount extends Component {
     const newaccount = {
       creator: this.props.account.user.name,
       name,
-      owner,
-      active
+      owner: owner.replace('VEST', 'EOS'),
+      active: active.replace('VEST', 'EOS')
     };
     const buyrambytes = {
       payer: this.props.account.user.name,
@@ -94,7 +77,7 @@ class CreateAccount extends Component {
       receiver: name,
       stake_net_quantity: formatQuantity(stake_net_quantity) + ' VEST',
       stake_cpu_quantity: formatQuantity(stake_cpu_quantity) + ' VEST',
-      transfer
+      transfer: Number(transfer)
     };
     this.setState({success: false, error: false});
     return this.props.dispatch(createAccountActions.create({newaccount, buyrambytes, delegatebw, privatekey})).then(() => {
@@ -112,7 +95,7 @@ class CreateAccount extends Component {
     return (
       <div className="Transfer">
         <div className="Transfer__container container">
-          <h5>Create new account</h5>
+          <h5>Create a new Account</h5>
           <Form form="createaccountlogin" onSubmit={this.onSubmitStep1} validate={this.validateStep1}>
             {this.state.error &&
               <div className="alert alert-danger">{this.props.account.errors.fetch}</div>
@@ -121,7 +104,7 @@ class CreateAccount extends Component {
               <div className="alert alert-success">Thank you!</div>
             }
             <div className="form-group">
-              <label htmlFor="name" className="form-label">Enter your account name</label>
+              <label htmlFor="name" className="form-label">Enter Your Account Name</label>
               <Field component={Input} type="text" name="name" id="name"/>
             </div>
             <Button
@@ -143,7 +126,7 @@ class CreateAccount extends Component {
             <div className="Transfer__form col-12 col-md-8 mb-4">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title mb-4">Create new account</h5>
+                  <h5 className="card-title mb-4">Create a new Account</h5>
                   <Form
                     form="createaccount"
                     initialValues={{
@@ -162,17 +145,18 @@ class CreateAccount extends Component {
                       <div className="alert alert-success">Account successfully created!</div>
                     }
                     <div className="form-group">
-                      <label htmlFor="name" className="form-label">New account name</label>
+                      <label htmlFor="name" className="form-label">New Account Name</label>
                       <Field component={Input} type="text" name="name" id="name"/>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="owner" className="form-label">Owner public key</label>
+                      <label htmlFor="active" className="form-label d-flex justify-content-between"><span>Owner Public Key</span><Link target="_blank" className="text-sm" to="/generate-key-pairs">generate</Link></label>
                       <Field component={Input} type="text" name="owner" id="owner"/>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="active" className="form-label">Active public key</label>
+                      <label htmlFor="active" className="form-label d-flex justify-content-between"><span>Active Public Key</span><Link target="_blank" className="text-sm" to="/generate-key-pairs">generate</Link></label>
                       <Field component={Input} type="text" name="active" id="active"/>
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="bytes" className="form-label">RAM bytes</label>
                       <Field component={Input} type="text" name="bytes" id="bytes"/>
@@ -196,7 +180,7 @@ class CreateAccount extends Component {
                       </Field>
                     </div>
                     <div className="form-group mb-5">
-                      <label htmlFor="privatekey" className="form-label">Your private key</label>
+                      <label htmlFor="privatekey" className="form-label">Your Private Key</label>
                       <Field component={Input} type="text" name="privatekey" id="privatekey"/>
                     </div>
                     <Button
@@ -215,11 +199,11 @@ class CreateAccount extends Component {
                   <table className="mb-4">
                     <tbody>
                       <tr>
-                        <td className="pr-2">name</td>
+                        <td className="pr-2 font-weight-bold">Name:</td>
                         <td>{this.props.account.user.name}</td>
                       </tr>
                       <tr>
-                        <td className="pr-2">balance</td>
+                        <td className="pr-2 font-weight-bold">Balance:</td>
                         <td>{this.props.account.user.balance}</td>
                       </tr>
                     </tbody>

@@ -6,3 +6,4 @@ export {default as formatTxLink} from './formatTxLink';
 export {default as formatQuantity} from './formatQuantity';
 export {default as http} from './http';
 export {default as themeClasses} from './theme-classes';
+export {default as validation} from './validation';

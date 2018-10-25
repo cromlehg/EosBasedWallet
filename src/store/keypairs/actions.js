@@ -16,7 +16,7 @@ export default {
   generate: thunk('GENERATE', () => {
     return ecc.randomKey().then(privateKey => {
       const publicKey = ecc.privateToPublic(privateKey);
-      return {privateKey, publicKey};
+      return {privateKey, publicKey: publicKey.replace('EOS', 'VEST')};
     });
   })
 
