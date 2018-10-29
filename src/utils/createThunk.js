@@ -10,22 +10,27 @@ export default function (types) {
       });
       return response;
     } catch (e) {
-      console.log(e)
-      if (e.response && e.response.status < 500) {
-        const error = e.response.data.msg || e.response.data || 'Something went wrong';
-        dispatch({
-          type: types[`${type}_FAILURE`],
-          error,
-          params
-        });
-      } else {
-        dispatch({
-          type: types[`${type}_FAILURE`],
-          error: 'Something went wrong',
-          params
-        });
-        // throw e;
+      let error = '';
+      try {
+        let cleanErr = e.toString().replace('Error: ', '');
+        const obj = JSON.parse(cleanErr);
+        if (obj.error.code !== 0) {
+          error = obj.error.what;
+        } else {
+          const details = [];
+          obj.error.details.forEach(detail => details.push(detail.message));
+          error = details.join(", ");
+        }
+      } catch (err) {
+        if (error.length === 0) {
+          error = 'Something went wrong.';
+        }
       }
+      dispatch({
+        type: types[`${type}_FAILURE`],
+        error,
+        params
+      });
       return null;
     }
   };

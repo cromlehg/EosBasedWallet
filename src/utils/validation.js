@@ -29,7 +29,6 @@ function publicKey(field, values, errors) {
 }
 
 function quantity(field, values, errors, number = null) {
-  console.log(values);
   if (values[field] === '') {
     errors[field] = 'required';
   } else if (isNaN(parseFloat(values[field])) || !isFinite(values[field])) {
