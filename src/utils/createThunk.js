@@ -20,6 +20,9 @@ export default function (types) {
           const details = [];
           obj.error.details.forEach(detail => details.push(detail.message));
           error = details.join(", ");
+          if (error === 'unknown key') {
+            error = 'Invalid Account Name';
+          }
         }
       } catch (err) {
         if (error.length === 0) {
