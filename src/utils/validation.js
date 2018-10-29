@@ -1,3 +1,5 @@
+import ecc from 'eosjs-ecc';
+
 function accountName(field, values, errors, checks) {
   if (!values[field]) {
     errors[field] = 'required';
@@ -13,17 +15,15 @@ function accountName(field, values, errors, checks) {
 function privateKey(field, values, errors) {
   if (!values[field]) {
     errors[field] = 'required';
-  } else if (!/^\w*$/.test(values.privatekey)) {
+  } else if (!ecc.isValidPrivate(values[field], 'VEST')) {
     errors[field] = 'invalid private key';
-  } else if (values.privatekey.length !== 51) {
-    errors[field] = 'wrong private key length';
   }
 }
 
 function publicKey(field, values, errors) {
   if (!values[field]) {
     errors[field] = 'required';
-  } else if (!/^VEST\w*$/.test(values[field]) || values[field].length !== 54) {
+  } else if (!ecc.isValidPublic(values[field], 'VEST')) {
     errors[field] = 'invalid public key';
   }
 }

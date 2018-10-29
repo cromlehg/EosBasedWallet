@@ -5,6 +5,7 @@ import {Field, SubmissionError} from 'redux-form';
 import './style.scss';
 import {accountActions, modalActions} from '../../../store/actions';
 import {Button, Form, Input, Modal} from '../../../components';
+import {validation} from "../../../utils";
 
 class Login extends Component {
   static propTypes = {
@@ -22,11 +23,9 @@ class Login extends Component {
 
   validate = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'required';
-    }
+    validation.accountName('name', values, errors, ['lessThan12']);
     return errors;
-  }
+  };
 
   onSubmit = values => {
     this.setState({success: false, error: false});
@@ -39,7 +38,7 @@ class Login extends Component {
         this.props.dispatch(modalActions.hide(true));
       }
     });
-  }
+  };
 
   onCancel = () => {
     this.props.dispatch(modalActions.hide(false));

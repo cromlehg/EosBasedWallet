@@ -26,7 +26,7 @@ class CreateAccount extends Component {
 
   onClickSwitchAccount = () => {
     this.props.dispatch(modalActions.show('Login'));
-  }
+  };
 
   validateStep1 = values => {
     const errors = {};
@@ -64,8 +64,8 @@ class CreateAccount extends Component {
     const newaccount = {
       creator: this.props.account.user.name,
       name,
-      owner: owner.replace('VEST', 'EOS'),
-      active: active.replace('VEST', 'EOS')
+      owner,
+      active
     };
     const buyrambytes = {
       payer: this.props.account.user.name,
